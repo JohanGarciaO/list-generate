@@ -1,12 +1,12 @@
 <?php
 
-require 'vendor/autoload.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/vendor/autoload.php';
 
 use Dotenv\Dotenv;
 use Mpdf\Mpdf;
 
 // Carrega as variáveis de ambiente do arquivo .env
-$dotenv = Dotenv::createImmutable(__DIR__);
+$dotenv = Dotenv::createImmutable($_SERVER['DOCUMENT_ROOT']);
 $dotenv->load();
 
 // Obtém variáveis do .env
@@ -15,7 +15,7 @@ $appVersion = $_ENV['APP_VERSION'] ?? '0.0';
 
 // Iniciar buffer de saída para capturar o HTML processado
 ob_start();
-include 'template.php';
+include $_SERVER['DOCUMENT_ROOT'] . '/src/templates/template.php';
 $template = ob_get_clean();
 
 // Cria um arquivo PDF

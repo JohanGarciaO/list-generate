@@ -3,7 +3,7 @@
 
 <head>
     <title>Meu PDF</title>
-    <link rel="stylesheet" type="text/css" href="template-style.css">
+    <link rel="stylesheet" type="text/css" href="<?php echo $_SERVER['DOCUMENT_ROOT'] . "/src/templates/template-style.css" ?>">
 </head>
 
 <body>

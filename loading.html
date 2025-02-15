@@ -66,16 +66,15 @@
     
 </body>
 
-
 <script>
     // Faz a requisição para gerar o PDF
-    fetch('list-generate.php')
+    fetch('/src/pdf/list-generate.php')
         .then(response => response.blob()) // Converte para blob (arquivo)
         .then(blob => {
             const url = window.URL.createObjectURL(blob);
             const a = document.createElement('a');
             a.href = url;
-            a.download = 'relatorio.pdf'; // Nome do arquivo
+            a.download = 'new-list.pdf'; // Nome do arquivo
             document.body.appendChild(a);
             a.click();
             document.body.removeChild(a);
