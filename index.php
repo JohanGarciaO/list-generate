@@ -1,19 +1,16 @@
-<?php
+<!DOCTYPE html>
+<html lang="en">
 
-require 'vendor/autoload.php';
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
 
-use Dotenv\Dotenv;
-use Mpdf\Mpdf;
+<body>
 
-// Carrega as variáveis de ambiente do arquivo .env
-$dotenv = Dotenv::createImmutable(__DIR__);
-$dotenv->load();
+    <a id="gerarPdf" href="loading.html" target="_BLANK">Gerar PDF</a>
 
-// Obtém variáveis do .env
-$appName = $_ENV['APP_NAME'] ?? 'Desconhecido';
-$appVersion = $_ENV['APP_VERSION'] ?? '0.0';
+</body>
 
-// Cria um arquivo PDF
-$mpdf = new Mpdf();
-$mpdf->WriteHTML("<h1>$appName</h1><p>Versão: $appVersion</p>");
-$mpdf->Output('arquivo.pdf', 'I'); // Exibe o PDF no navegador
+</html>

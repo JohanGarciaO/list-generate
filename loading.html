@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carregando...</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+        }
+
+        .container-loading {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: absolute;
+            background-color: #54c3df44;
+        }
+
+        #content-loading {
+            display: flex;
+            flex-direction: column;
+            row-gap: 20px;
+            text-align: center;
+            font-size: 24px;
+            color: #333;
+            position: relative;
+            font-weight: bold;
+            font-style: italic;
+            letter-spacing: 2px;
+        }
+
+        #content-loading::after {
+            content: "";
+            display: block;
+            width: 60px;
+            height: 60px;
+            margin: 10px auto;
+            border: 5px solid #143c70;
+            border-top: 5px solid transparent;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            from {
+                transform: rotate(0deg);
+            }
+
+            to {
+                transform: rotate(360deg);
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container-loading">
+        <div id="content-loading">
+            <p>Gerando Lista, aguarde...</p>
+        </div>
+    </div>
+    
+</body>
+
+
+<script>
+    // Faz a requisição para gerar o PDF
+    fetch('list-generate.php')
+        .then(response => response.blob()) // Converte para blob (arquivo)
+        .then(blob => {
+            const url = window.URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'relatorio.pdf'; // Nome do arquivo
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+
+            // Aguarda um tempo para garantir que o download iniciou e fecha a aba
+            setTimeout(() => {
+                window.close();
+            }, 3000); // Fecha a aba após 3 segundos
+        })
+        .catch(error => console.error('Erro ao gerar PDF:', error));
+</script>
+</html>
