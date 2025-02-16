@@ -21,10 +21,17 @@ $template = ob_get_clean();
 // Cria um arquivo PDF
 $mpdf = new Mpdf();
 
+// Adiciona a marca d'água no cabeçalho de todas as páginas
+$mpdf->SetHTMLHeader('
+    <div class="watermark">
+        <img src="../images/watermark.png">
+    </div>
+');
+
 // Adicionar o HTML processado ao PDF
 $mpdf->WriteHTML($template);
 
 // Gera o PDF e envia para o navegador
 header('Content-Type: application/pdf');
-header('Content-Disposition: attachment; filename="new-list.pdf"');
+// header('Content-Disposition: attachment; filename="new-list.pdf"');
 echo $mpdf->Output('', 'S'); // Retorna o PDF como string
