@@ -1,5 +1,13 @@
 FROM php:8.0-apache
 
+# CONFIGURAÇÃO DE PROXY
+# ENV HTTP_PROXY=http://06430396355:Garcia2002%40@10.108.88.4:8080 \
+#     http_proxy=http://06430396355:Garcia2002%40@10.108.88.4:8080 \
+#     HTTPS_PROXY=http://06430396355:Garcia2002%40@10.108.88.4:8080 \
+#     https_proxy=http://06430396355:Garcia2002%40@10.108.88.4:8080 \
+#     NO_PROXY=10.*;*.intraer \
+#     no_proxy=10.*;*.intraer
+
 RUN apt-get update && apt-get install -y \ 
     libzip-dev \
     libjpeg-dev \
