@@ -19,7 +19,22 @@ include $_SERVER['DOCUMENT_ROOT'] . '/src/templates/template.php';
 $template = ob_get_clean();
 
 // Cria um arquivo PDF
-$mpdf = new Mpdf();
+$mpdf = new Mpdf([
+    'margin_left' => 0,    // Margem esquerda
+    'margin_right' => 0,   // Margem direita
+    'margin_top' => 0,     // Margem superior
+    'margin_bottom' => 0,  // Margem inferior (para rodapé)
+    'margin_header' => 0,  // Margem do cabeçalho
+    'margin_footer' => 0   // Margem do rodapé
+]);
+
+// Registrar a fonte personalizada
+$fontPath = __DIR__ . '/ttfonts/Roboto-Regular.ttf'; // Caminho para a fonte baixada
+$mpdf->fontdata['Roboto'] = [
+    'R' => $fontPath, // Regular (R) ou Bold (B)
+];
+// Definir a fonte no mPDF
+$mpdf->SetFont('Roboto', '', 12); // 'roboto' é o nome que você deu à fonte, e 12 é o tamanho da fonte
 
 // Adiciona a marca d'água no cabeçalho de todas as páginas
 $mpdf->SetHTMLHeader('

@@ -5,63 +5,31 @@
 <html>
 
 <head>
-    <title>Meu PDF</title>
+    <title>Lista Tal</title>
     <link rel="stylesheet" type="text/css" href="<?php echo $_SERVER['DOCUMENT_ROOT'] . "/src/templates/template-style.css" ?>">
 </head>
 
 <body>
 
     <div class="container">
-        <h1>Lista Gerada</h1>
-        <?php echo "<h1>$appName</h1><p>Versão: $appVersion</p>"; ?>
-        <p>Este é um exemplo de PDF gerado com mPDF.</p>
-        <p>Este é um exemplo de PDF gerado com mPDF.</p>
-        <p>Este é um exemplo de PDF gerado com mPDF.</p>
-        <p>Este é um exemplo de PDF gerado com mPDF.</p>
-        <p>Este é um exemplo de PDF gerado com mPDF.</p>
-        <p>Este é um exemplo de PDF gerado com mPDF.</p>
-        <p>Este é um exemplo de PDF gerado com mPDF.</p>
-        <p>Este é um exemplo de PDF gerado com mPDF.</p>
-        <p>Este é um exemplo de PDF gerado com mPDF.</p>
-        <p>Este é um exemplo de PDF gerado com mPDF.</p>
-        <p>Este é um exemplo de PDF gerado com mPDF.</p>
-        <p>Este é um exemplo de PDF gerado com mPDF.</p>
-        <p>Este é um exemplo de PDF gerado com mPDF.</p>
-        <p>Este é um exemplo de PDF gerado com mPDF.</p>
-        <p>Este é um exemplo de PDF gerado com mPDF.</p>
-        <p>Este é um exemplo de PDF gerado com mPDF.</p>
-        <p>Este é um exemplo de PDF gerado com mPDF.</p>
-        <p>Este é um exemplo de PDF gerado com mPDF.</p>
-        <p>Este é um exemplo de PDF gerado com mPDF.</p>
-        <p>Este é um exemplo de PDF gerado com mPDF.</p>
-        <p>Este é um exemplo de PDF gerado com mPDF.</p>
-        <p>Este é um exemplo de PDF gerado com mPDF.</p>
-        <p>Este é um exemplo de PDF gerado com mPDF.</p>
-        <p>Este é um exemplo de PDF gerado com mPDF.</p>
-        <p>Este é um exemplo de PDF gerado com mPDF.</p>
-        <p>Este é um exemplo de PDF gerado com mPDF.</p>
-        <p>Este é um exemplo de PDF gerado com mPDF.</p>
-        <p>Este é um exemplo de PDF gerado com mPDF.</p>
-        <p>Este é um exemplo de PDF gerado com mPDF.</p>
-        <p>Este é um exemplo de PDF gerado com mPDF.</p>
-        <p>Este é um exemplo de PDF gerado com mPDF.</p>
-        <p>Este é um exemplo de PDF gerado com mPDF.</p>
-        <p>Este é um exemplo de PDF gerado com mPDF.</p>
-        <p>Este é um exemplo de PDF gerado com mPDF.</p>
-        <p>Este é um exemplo de PDF gerado com mPDF.</p>
-        <p>Este é um exemplo de PDF gerado com mPDF.</p>
-        <p>Este é um exemplo de PDF gerado com mPDF.</p>
-        <p>Este é um exemplo de PDF gerado com mPDF.</p>
-        <p>Este é um exemplo de PDF gerado com mPDF.</p>
-        <p>Este é um exemplo de PDF gerado com mPDF.</p>
-        <p>Este é um exemplo de PDF gerado com mPDF.</p>
-        <p>Este é um exemplo de PDF gerado com mPDF.</p>
-        <p>Este é um exemplo de PDF gerado com mPDF.</p>
-        <p>Este é um exemplo de PDF gerado com mPDF.</p>
-        <p>Este é um exemplo de PDF gerado com mPDF.</p>
-        <p>Este é um exemplo de PDF gerado com mPDF.</p>
-        <p>Este é um exemplo de PDF gerado com mPDF.</p>
-        <p>Este é um exemplo de PDF gerado com mPDF.</p>
+
+        <div class="header-container">
+            <h1>Cabeçalho</h1>
+        </div>
+
+        <div class="main-container">
+            <h1>Questões</h1>            
+        </div>
+
+        <div class="footer-container">
+            <table class="content-footer">
+                <tr>
+                    <td class="info-footer">Larissa Teixeira</td>
+                    <td class="number-page">1</td>
+                </tr>
+            </table>
+        </div>
+        
     </div>
 
 </body>
