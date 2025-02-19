@@ -20,8 +20,8 @@ $template = ob_get_clean();
 
 // Cria um arquivo PDF
 $mpdf = new Mpdf([
-    'margin_left' => 0,    // Margem esquerda
-    'margin_right' => 0,   // Margem direita
+    'margin_left' => 10,    // Margem esquerda
+    'margin_right' => 10,   // Margem direita
     'margin_top' => 0,     // Margem superior
     'margin_bottom' => 0,  // Margem inferior (para rodapé)
     'margin_header' => 0,  // Margem do cabeçalho
@@ -37,11 +37,11 @@ $mpdf->fontdata['Roboto'] = [
 $mpdf->SetFont('Roboto', '', 12); // 'roboto' é o nome que você deu à fonte, e 12 é o tamanho da fonte
 
 // Adiciona a marca d'água no cabeçalho de todas as páginas
-$mpdf->SetHTMLHeader('
-    <div class="watermark">
-        <img src="../images/watermark.png">
-    </div>
-');
+// $mpdf->SetHTMLHeader('
+//     <div class="watermark">
+//         <img src="../images/watermark.png">
+//     </div>
+// ');
 
 // Adicionar o HTML processado ao PDF
 $mpdf->WriteHTML($template);
