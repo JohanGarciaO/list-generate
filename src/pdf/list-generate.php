@@ -22,26 +22,37 @@ $template = ob_get_clean();
 $mpdf = new Mpdf([
     'margin_left' => 10,    // Margem esquerda
     'margin_right' => 10,   // Margem direita
-    'margin_top' => 0,     // Margem superior
-    'margin_bottom' => 0,  // Margem inferior (para rodapé)
+    'margin_top' => 17,     // Margem superior
+    'margin_bottom' => 21,  // Margem inferior (para rodapé)
     'margin_header' => 0,  // Margem do cabeçalho
     'margin_footer' => 0   // Margem do rodapé
 ]);
 
-// Registrar a fonte personalizada
-$fontPath = __DIR__ . '/ttfonts/Roboto-Regular.ttf'; // Caminho para a fonte baixada
-$mpdf->fontdata['Roboto'] = [
-    'R' => $fontPath, // Regular (R) ou Bold (B)
-];
-// Definir a fonte no mPDF
-$mpdf->SetFont('Roboto', '', 12); // 'roboto' é o nome que você deu à fonte, e 12 é o tamanho da fonte
+// Adiciona o cabeçalho em todas as páginas
+$mpdf->SetHTMLHeader('
+    <div class="header-container">
+        <table class="content-header">
+            <tr>
+                <td class="tittle">Monitoria <span class="emphasis_tittle">Sefianas</span></td>
+            </tr>
+            <tr>
+                <td class="separator-h"></td>
+            </tr>
+        </table>
+    </div>
+');
 
-// Adiciona a marca d'água no cabeçalho de todas as páginas
-// $mpdf->SetHTMLHeader('
-//     <div class="watermark">
-//         <img src="../images/watermark.png">
-//     </div>
-// ');
+// Adiciona o cabeçalho em todas as páginas
+$mpdf->SetHTMLFooter('
+    <div class="footer-container">
+        <table class="content-footer">
+            <tr>
+                <td class="info-footer">Larissa Teixeira</td>
+                <td class="number-page">1</td>
+            </tr>
+        </table>
+    </div>
+');
 
 // Adicionar o HTML processado ao PDF
 $mpdf->WriteHTML($template);
