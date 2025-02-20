@@ -130,31 +130,77 @@ $column = 'left';
 $last_size = 0;
 
 // Objective Question
-$item = '
+function objective_question($number_question, $statement, $json_alternatives){
+    $alternatives = json_decode($json_alternatives, true);
+
+    if ($alternatives === null) {
+        die("Erro ao decodificar JSON: " . json_last_error_msg());
+    }
+
+    return '
     <div class="question">
-        <p><b>' . '' . '</b> - Este é um texto aleatório para testar a estrutura de uma questão e ver se tudo tá encaixando bonitinho, ver aí se deu certo e me confirma:</p>
+        <p><b>' . $number_question . '</b> - ' . $statement . '</p>
         <div class="options">
-            <span>a) Deu certo.</span><br>
-            <span>b) Não deu.</span><br>
-            <span>c) Acho que deu.</span><br>
-            <span>d) Não deu mas vai dar.</span>
+            <span>a) ' . $alternatives['a'] . '</span><br>
+            <span>b) ' . $alternatives['b'] . '</span><br>
+            <span>c) ' . $alternatives['c'] . '</span><br>
+            <span>d) ' . $alternatives['d'] . '</span>
         </div>
-    </div>';
+    </div>
+    ';
+}
 
-for($i=1;$i<=25;$i++){    
+// Objective Gap Question 
+function gap_question($number_question, $statement, $gap_context, $json_alternatives){
+    $alternatives = json_decode($json_alternatives, true);
 
-    $item = '
+    if ($alternatives === null) {
+        die("Erro ao decodificar JSON: " . json_last_error_msg());
+    }
+
+    return '
     <div class="question">
-        <p><b>' . $i . '</b> - Este é um texto aleatório para testar a estrutura de uma questão, ver aí se deu certo e me confirma:</p>
+        <p><b>' . $number_question . '</b> - ' . $statement . '</p>
+        <p>' . $gap_context . '</p>
         <div class="options">
-            <span>a) Deu certo.</span><br>
-            <span>b) Não deu.</span><br>
-            <span>c) Acho que deu.</span><br>
-            <span>d) Não deu mas vai dar.</span>
+            <span>a) ' . $alternatives['a'] . '</span><br>
+            <span>b) ' . $alternatives['b'] . '</span><br>
+            <span>c) ' . $alternatives['c'] . '</span><br>
+            <span>d) ' . $alternatives['d'] . '</span>
         </div>
-    </div>';
+    </div>
+    ';
+}
 
-    // Se o novo tamanho fo rmenor do que o tamanho antigo é porque houve quebra de página, então joga o item pra próxima coluna
+$objective_statement = "Este é um texto aleatório para testar a estrutura de uma questão, ver aí se deu certo e me confirma:";
+
+$objective_json_alternatives = '{
+"a": "Deu certo.", 
+"b": "Não deu.", 
+"c": "Acho que deu.",
+"d": "Não deu mas vai dar."
+}';
+
+$gap_statement = "Complete as lacunas abaixo e selecione a alternativa correta:";
+
+$gap_context = "A(O) __________ é muito __________ e por isso a Larissa não toma banho.";
+
+$gap_json_alternatives = '{
+"a": "Terra - querosene.", 
+"b": "Querosene - forte.", 
+"c": "Suco - quente.",
+"d": "Água - gelada."
+}';
+
+for($i=1;$i<=4;$i++){    
+
+    if($i%2 == 0){
+        $item = gap_question($i,$gap_statement,$gap_context,$gap_json_alternatives);
+    }else{
+        $item = objective_question($i,$objective_statement,$objective_json_alternatives);
+    }
+
+    // Se o novo tamanho for menor do que o tamanho antigo é porque houve quebra de página, então joga o item pra próxima coluna
     if(size($template_buffer . $item) < $last_size){
         if($column == 'left'){
             $column = 'right';

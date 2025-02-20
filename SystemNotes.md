@@ -14,7 +14,7 @@ DB MODEL
 subject (id, name)
 list (id, subject_id, date)
 bank (id, name, abrev)
-question (id, list_id (null), subject_id, bank, year, type ('objective','assertive','correlate'), question, assertions (json:null), correlations (json:null), alternatives (json), response)
+question (id, list_id (null), subject_id, bank, year, type ('objective','gap','assertive','correlate'), question, assertions (json:null), correlations (json:null), alternatives (json), response)
 
 ---
 
