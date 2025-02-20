@@ -55,11 +55,6 @@ $dotenv->load();
 $appName = $_ENV['APP_NAME'] ?? 'Desconhecido';
 $appVersion = $_ENV['APP_VERSION'] ?? '0.0';
 
-// Iniciar buffer de saída para capturar o HTML processado
-// ob_start();
-// include $_SERVER['DOCUMENT_ROOT'] . '/src/templates/template.php';
-// $template = ob_get_clean();
-
 // Cria um arquivo PDF
 $mpdf = new Mpdf([
     'margin_left' => 10,    // Margem esquerda
@@ -90,7 +85,7 @@ $mpdf->SetHTMLFooter('
         <table class="content-footer">
             <tr>
                 <td class="info-footer">Larissa Teixeira</td>
-                <td class="number-page">1</td>
+                <td class="number-page">{PAGENO}</td>
             </tr>
         </table>
     </div>
@@ -122,19 +117,42 @@ $template = '
     </div>
 
     <div class="container">
+        <div class="left-column">
+            <div class="subject-list">
+                <b>Clínica Médica e Farmacologia</b>
+            </div>
 ';
-// $mpdf->WriteHTML($template); 
 
-$template .= '<div class="left-column">';
 $template_null = $template;
 $template_buffer = $template_null;
 
 $column = 'left';
 $last_size = 0;
 
-for($i=1;$i<=48;$i++){    
+// Objective Question
+$item = '
+    <div class="question">
+        <p><b>' . '' . '</b> - Este é um texto aleatório para testar a estrutura de uma questão e ver se tudo tá encaixando bonitinho, ver aí se deu certo e me confirma:</p>
+        <div class="options">
+            <span>a) Deu certo.</span><br>
+            <span>b) Não deu.</span><br>
+            <span>c) Acho que deu.</span><br>
+            <span>d) Não deu mas vai dar.</span>
+        </div>
+    </div>';
 
-    $item = '<p>'.$i.'. Testeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee</p>';
+for($i=1;$i<=25;$i++){    
+
+    $item = '
+    <div class="question">
+        <p><b>' . $i . '</b> - Este é um texto aleatório para testar a estrutura de uma questão, ver aí se deu certo e me confirma:</p>
+        <div class="options">
+            <span>a) Deu certo.</span><br>
+            <span>b) Não deu.</span><br>
+            <span>c) Acho que deu.</span><br>
+            <span>d) Não deu mas vai dar.</span>
+        </div>
+    </div>';
 
     // Se o novo tamanho fo rmenor do que o tamanho antigo é porque houve quebra de página, então joga o item pra próxima coluna
     if(size($template_buffer . $item) < $last_size){
@@ -166,9 +184,6 @@ $template = '
 </html>
 ';
 $mpdf->WriteHTML($template);
-
-// Adicionar o HTML processado ao PDF
-// $mpdf->WriteHTML($template);
 
 // Gera o PDF e envia para o navegador
 header('Content-Type: application/pdf');

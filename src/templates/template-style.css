@@ -5,7 +5,7 @@
 }
 
 body {
-    background-image: url("../images/watermark2.png");
+    background-image: url("../images/watermark.png");
     background-position: 50% 50%;
     font-family: 'Times New Roman', Times, serif;
 }
@@ -74,8 +74,12 @@ body {
 
 .container {
     width: 100%;    
-    font-size: 12pt;
+    font-size: 10pt;
     overflow: hidden;
+}
+
+.subject-list {
+    margin: 10px 0px;
 }
 
 .left-column {
@@ -90,4 +94,8 @@ body {
     width: 47.08%;
     float: right;
     padding-left: 20px;
+}
+
+.question {
+    text-align: justify;
 }
