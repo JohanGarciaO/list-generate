@@ -72,27 +72,22 @@ body {
     text-align: right;
 }
 
-/* .container {
+.container {
     width: 100%;    
-    border: 1px solid black;
     font-size: 12pt;
-    background-color: #ccc;
-} 
+    overflow: hidden;
+}
 
-.container::after{
-    content: "";
-    display: block;
-    break-after: column;
-} 
-
-.item {
-    break-inside: avoid;
-} */
-
-.separator {
+.left-column {
+    border-right: 1px solid #000;
+    width: 47.08%;
     height: 100%;
-    width: 2px;
-    background-color: black;
-    display: inline-block;
-    margin: 0 5mm;
+    float: left;
+    padding-right: 20px;
+}
+
+.right-column {
+    width: 47.08%;
+    float: right;
+    padding-left: 20px;
 }

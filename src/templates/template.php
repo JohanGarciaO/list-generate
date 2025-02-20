@@ -1,6 +1,3 @@
-<?php
-
-?>
 <!DOCTYPE html>
 <html>
 
@@ -26,68 +23,49 @@
     <!-- <div class="subject-list">
         <b>Clínica Médica e Farmacologia</b>
     </div> -->
-    <div class="conatiner">
-    <columns class="two-columns" column-count="2" column-gap="10">
-        <div class="item" style="font-size: 12pt;">1 - Conteúdo da primeira coluna...</div>
-        <div class="item">1 - Conteúdo da primeira coluna...</div>
-        <div class="item">1 - Conteúdo da primeira coluna...</div>
-        <div class="item">1 - Conteúdo da primeira coluna...</div>
-        <div class="item">1 - Conteúdo da primeira coluna...</div>
-        <div class="item">2 - Mais conteúdo...</div>
-        <div class="item">2 - Mais conteúdo...</div>
-        <div class="item">2 - Mais conteúdo...</div>
-        <div class="item">2 - Mais conteúdo...</div>
-        <div class="item">2 - Mais conteúdo...</div>
-        <div class="item">2 - Mais conteúdo...</div>
-        <div class="item">2 - Mais conteúdo...</div>
-        <div class="item">2 - Mais conteúdo...</div>
-        <div class="item">2 - Mais conteúdo...</div>
-        <div class="item">2 - Mais conteúdo...</div>
-        <div class="item">2 - Mais conteúdo...</div>
-        <div class="item">2 - Mais conteúdo...</div>
-        <div class="item">2 - Mais conteúdo...</div>
-        <div class="item">2 - Mais conteúdo...</div>
-        <div class="item">2 - Mais conteúdo...</div>
-        <div class="item">2 - Mais conteúdo...</div>
-        <div class="item">2 - Mais conteúdo...</div>
-        <div class="item">2 - Mais conteúdo...</div>
-        <div class="item">2 - Mais conteúdo...</div>
-        <div class="item">2 - Mais conteúdo...</div>
-        <div class="item">2 - Mais conteúdo...</div>
-        <div class="item">2 - Mais conteúdo...</div>
-        <div class="item">2 - Mais conteúdo...</div>
-        <div class="item">2 - Mais conteúdo...</div>
-        <div class="item">2 - Mais conteúdo...</div>
-        <div class="item">2 - Mais conteúdo...</div>
-        <div class="item">2 - Mais conteúdo...</div>
-        <div class="item">2 - Mais conteúdo...</div>
-        <div class="item">2 - Mais conteúdo...</div>
-        <div class="item">2 - Mais conteúdo...</div>
-        <div class="item">2 - Mais conteúdo...</div>
-        <div class="item">2 - Mais conteúdo...</div>
-        <div class="item">2 - Mais conteúdo...</div>
-        <div class="item">2 - Mais conteúdo...</div>
-        <div class="item">2 - Mais conteúdo...</div>
-        <div class="item">2 - Mais conteúdo...</div>
-        <div class="item">2 - Mais conteúdo...</div>
-        <div class="item">2 - Mais conteúdo...</div>
-        <div class="item">2 - Mais conteúdo...</div>
-        <div class="item">2 - Mais conteúdo...</div>
-        <div class="item">2 - Mais conteúdo...</div>
-        <div class="item">2 - Mais conteúdo...</div>
-        <div class="item">2 - Mais conteúdo...</div>
-        <span class="separator"></span>
-        <div class="item">2 - Mais conteúdo...</div>
-        <div class="item">2 - Mais conteúdo...</div>
-        <div class="item">2 - Mais conteúdo...</div>
-        <div class="item">2 - Mais conteúdo...</div>
-        <div class="item">2 - Mais conteúdo...</div>
-        <div class="item">2 - Mais conteúdo...</div>
-        <div class="item">3 - Quando a coluna esquerda enche, ele passa para a direita...</div>
-        <div class="item">4 - Depois da direita, ele continua na coluna da esquerda da próxima página!</div>
-    </columns>
-    </div>
 
+    <div class="container">
+        <div class="left-column">
+            <?php 
+
+            for($i=1;$i<=24;$i++){
+                echo "<p>$i. Teste</p>";
+            }
+
+            ?>
+        </div>
+        
+        <div class="right-column">
+            <?php 
+
+            for($i=1;$i<=24;$i++){
+                echo "<p>$i. Teste</p>";
+            }
+            
+            ?>
+        </div>
+
+        <div class="left-column">
+            <?php 
+
+            for($i=1;$i<=24;$i++){
+                echo "<p>$i. Teste</p>";
+            }
+
+            ?>
+        </div>
+        
+        <div class="right-column">
+            <?php 
+
+            for($i=1;$i<=24;$i++){
+                echo "<p>$i. Teste</p>";
+            }
+            
+            ?>
+        </div>
+    </div>
+    
 </body>
 
 </html>
