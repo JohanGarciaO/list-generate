@@ -14,7 +14,7 @@ DB MODEL
 subject (id, name)
 list (id, subject_id, date)
 bank (id, name, abrev)
-question (id, list_id (null), subject_id, bank, year, type ('objective','gap','assertive','correlate'), question, assertions (json:null), correlations (json:null), alternatives (json), response)
+question (id, list_id (null), subject_id, bank, year, biography, type ('objective','gap','assertive','correlate'), question, assertions (json:null), correlations (json:null), alternatives (json), response)
 
 ---
 
@@ -28,6 +28,10 @@ I. Algo ( ) Diz respeito a isso.
 II. Outro algo ( ) Diz respeito àquilo.
 
 DUAS COISAS PRA AGORA:[
+
 - Ver a organização dos arquivos
 - Ver qual a melhor maneira de modelar o banco
-]
+  ]
+
+ESTUDAR LARAVEL
+APRENDER USAR O MIGRATION NO LARAVEL
