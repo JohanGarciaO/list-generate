@@ -1,52 +1,10 @@
 <?php
-
 require_once $_SERVER['DOCUMENT_ROOT'] . '/vendor/autoload.php';
+require_once "../scripts/questions.php";
+require_once "../scripts/pdf-buffer.php";
 
 use Dotenv\Dotenv;
 use Mpdf\Mpdf;
-
-function size($template_buffer)
-{
-    $size_elements = new Mpdf([
-        'margin_left' => 10,    // Margem esquerda
-        'margin_right' => 10,   // Margem direita
-        'margin_top' => 17,     // Margem superior
-        'margin_bottom' => 21,  // Margem inferior (para rodapé)
-        'margin_header' => 0,  // Margem do cabeçalho
-        'margin_footer' => 0   // Margem do rodapé
-    ]);
-
-    // Adiciona o cabeçalho em todas as páginas
-    $size_elements->SetHTMLHeader('
-        <div class="header-container">
-            <table class="content-header">
-                <tr>
-                    <td class="tittle">Monitoria <span class="emphasis_tittle">Sefianas</span></td>
-                </tr>
-                <tr>
-                    <td class="separator-h"></td>
-                </tr>
-            </table>
-        </div>
-    ');
-
-    // Adiciona o cabeçalho em todas as páginas
-    $size_elements->SetHTMLFooter('
-        <div class="footer-container">
-            <table class="content-footer">
-                <tr>
-                    <td class="info-footer">Larissa Teixeira</td>
-                    <td class="number-page">1</td>
-                </tr>
-            </table>
-        </div>
-    ');
-
-    $size_elements->WriteHTML($template_buffer);
-
-    $last_position = $size_elements->y;
-    return $last_position;
-}
 
 // Carrega as variáveis de ambiente do arquivo .env
 $dotenv = Dotenv::createImmutable($_SERVER['DOCUMENT_ROOT']);
@@ -80,7 +38,7 @@ $mpdf->SetHTMLHeader('
     </div>
 ');
 
-// Adiciona o cabeçalho em todas as páginas
+// Adiciona o rodapé em todas as páginas
 $mpdf->SetHTMLFooter('
     <div class="footer-container">
         <table class="content-footer">
@@ -92,6 +50,7 @@ $mpdf->SetHTMLFooter('
     </div>
 ');
 
+// Defines qual o CSS do template
 $src_style = $_SERVER['DOCUMENT_ROOT'] . "/src/templates/template-style.css";
 
 $template = '
@@ -130,124 +89,7 @@ $template_buffer = $template_null;
 $column = 'left';
 $last_size = 0;
 
-// Objective Question
-function objective_question($number_question, $statement, $json_alternatives)
-{
-    $alternatives = json_decode($json_alternatives, true);
-
-    if ($alternatives === null) {
-        die("Erro ao decodificar JSON: " . json_last_error_msg());
-    }
-
-    $question = '
-    <div class="question">
-        <p><b>' . $number_question . '</b> - ' . $statement . '</p>';
-
-    $question .= '<div class="options">';
-    foreach ($alternatives as $key => $value) {
-        $question .= "<span>$key) $value</span><br>";
-    }
-    $question .= '
-        </div>
-    </div>';
-
-    return $question;
-}
-
-// Gap Question 
-function gap_question($number_question, $statement, $gap_context, $json_alternatives)
-{
-    $alternatives = json_decode($json_alternatives, true);
-
-    if ($alternatives === null) {
-        die("Erro ao decodificar JSON: " . json_last_error_msg());
-    }
-
-    $question = '
-    <div class="question">
-        <p><b>' . $number_question . '</b> - ' . $statement . '</p>
-
-        <p>' . $gap_context . '</p>';
-
-    $question .= '<div class="options">';
-    foreach ($alternatives as $key => $value) {
-        $question .= "<span>$key) $value</span><br>";
-    }
-    $question .= '
-        </div>
-    </div>';
-
-    return $question;
-}
-
-// Assertive Question 
-function asssertive_question($number_question, $statement, $json_assertions, $json_alternatives)
-{
-    $alternatives = json_decode($json_alternatives, true);
-    $assertions = json_decode($json_assertions, true);
-
-    if ($alternatives === null || $assertions === null) {
-        die("Erro ao decodificar JSON: " . json_last_error_msg());
-    }
-
-    $question = '
-    <div class="question">
-        <p><b>' . $number_question . '</b> - ' . $statement . '</p>';
-
-    $question .= '<p>';
-    foreach ($assertions as $key => $value) {
-        $question .= "<span>$key. $value</span><br>";
-    }
-    $question .= '</p>';
-
-    $question .= '<div class="options">';
-    foreach ($alternatives as $key => $value) {
-        $question .= "<span>$key) $value</span><br>";
-    }
-    $question .= '
-        </div>
-    </div>';
-
-    return $question;
-}
-
-// Correlate Question 
-function correlate_question($number_question, $statement, $json_correlations, $json_alternatives)
-{
-    $alternatives = json_decode($json_alternatives, true);
-    $correlations = json_decode($json_correlations, true);
-
-    if ($alternatives === null || $correlations === null) {
-        die("Erro ao decodificar JSON: " . json_last_error_msg());
-    }
-
-    $question = '
-    <div class="question">
-        <p><b>' . $number_question . '</b> - ' . $statement . '</p>';
-
-    $question .= '<p>';
-    foreach ($correlations['assertive'] as $key => $value) {
-        $question .= "<span>$key. $value</span><br>";
-    }
-    $question .= '</p>';
-
-    $question .= '<p>';
-    foreach ($correlations['related'] as $value) {
-        $question .= "<span>( ) $value</span><br>";
-    }
-    $question .= '</p>';
-
-    $question .= '<div class="options">';
-    foreach ($alternatives as $key => $value) {
-        $question .= "<span>$key) $value</span><br>";
-    }
-    $question .= '
-        </div>
-    </div>';
-
-    return $question;
-}
-
+// INÍCIO DA SIMULAÇÃO DE DADOS VINDOS DE UM BANCO DE DADOS
 $objective_statement = "Este é um texto aleatório para testar a estrutura de uma questão, ver aí se deu certo e me confirma:";
 
 $objective_json_alternatives = '{
@@ -307,9 +149,11 @@ $correlate_json_alternatives = '{
 "c": "2-1-4-3.",
 "d": "2-1-3-4."
 }';
+// TÉRMINO DA SIMULAÇÃO DE DADOS
 
 for ($i = 1; $i <= 10; $i++) {
 
+    // SIMULAÇÃO DE CHAMAR AS FUNÇÕES DE ACORDO COM O TIPO DE QUESTÃO.
     if ($i % 2 == 0) {
         if ($i % 4 == 0) {
             $item = correlate_question($i, $correlate_statement, $correlations, $correlate_json_alternatives);
